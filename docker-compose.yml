@@ -1,0 +1,21 @@
+version: '3.7'
+
+services:
+  angular-frontend:
+    container_name: cliente-room
+    build:
+      context: ./client-room
+      dockerfile: Dockerfile
+    depends_on:
+      - spring-room
+    ports:
+      - '80:80'
+    environment:
+      - NODE_ENV=production
+  spring-room:
+    build:
+      context: ./back-room
+      dockerfile: Dockerfile
+    container_name: spring-room
+    ports:
+      - 8080:8080
